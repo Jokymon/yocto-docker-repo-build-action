@@ -20,6 +20,8 @@ RUN wget https://storage.googleapis.com/git-repo-downloads/repo-1 -O /bin/repo
 RUN chmod a+x /bin/repo
 
 RUN useradd -ms /bin/bash yocto_builder
+RUN mkdir -p /yocto_root && chown yocto_builder /yocto_root
+RUN mkdir -p /github/workspace && chown yocto_builder /github/workspace
 
 USER yocto_builder
 
@@ -28,6 +30,7 @@ RUN git config --global user.email "builder@example.com"
 RUN git config --global user.name "Builder User"
 
 VOLUME /yocto_root
+VOLUME /github/workspace
 
 ADD entrypoint.sh /
 
