@@ -5,7 +5,6 @@ set -e
 # VOLUME declared in the Dockerfile for local tests independent of the
 # GitHub environment
 if [ "x$GITHUB_WORKSPACE" = "x" ]; then
-  mkdir /yocto_root
   cd /yocto_root
 else
   echo "Detected GITHUB_WORKSPACE, changing directory"
