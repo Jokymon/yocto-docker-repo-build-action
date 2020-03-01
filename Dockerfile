@@ -19,6 +19,10 @@ ENV LANGUAGE en_US.UTF-8
 RUN wget https://storage.googleapis.com/git-repo-downloads/repo-1 -O /bin/repo
 RUN chmod a+x /bin/repo
 
+RUN useradd -ms /bin/bash yocto_builder
+
+USER yocto_builder
+
 RUN git config --global color.ui false
 RUN git config --global user.email "builder@example.com"
 RUN git config --global user.name "Builder User"
@@ -26,4 +30,5 @@ RUN git config --global user.name "Builder User"
 VOLUME /yocto_root
 
 ADD entrypoint.sh /
+
 ENTRYPOINT ["/entrypoint.sh"]
