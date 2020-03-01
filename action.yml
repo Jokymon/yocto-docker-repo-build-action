@@ -1,0 +1,8 @@
+name: 'Yocto Docker build with Repo manifest'
+description: 'Building of Yocto artifacts with a docker container and layers through repo'
+inputs:
+    bitbake_args:
+        description: 'Arguments for the bitbake command'
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
