@@ -12,8 +12,12 @@ else
 fi
 
 echo "Working directory: `pwd`"
-echo "Showing the content: `ls`"
-ls
+echo "Showing the content:"
+ls -la
+echo "Owner of $GITHUB_WORKSPACE:"
+ls -lad $GITHUB_WORKSPACE
+echo "Current user:"
+whoami
 
 echo "Executing 'repo init -u . -m manifest.xml'"
 repo init -u . -m manifest.xml
