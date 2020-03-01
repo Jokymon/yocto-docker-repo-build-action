@@ -7,9 +7,18 @@ set -e
 if [ "x$GITHUB_WORKSPACE" = "x" ]; then
   mkdir /yocto_root
   cd /yocto_root
+else
+  echo "Detected GITHUB_WORKSPACE, changing directory"
+  cd $GITHUB_WORKSPACE
 fi
 
+echo "Working directory: `pwd`"
+echo "Showing the content: `ls`"
+ls
+
+echo "Executing 'repo init -u . -m manifest.xml'"
 repo init -u . -m manifest.xml
+echo "Executing 'repo sync'"
 repo sync
 
 if [ "x$INPUT_BITBAKE_ARGS" = "x" ]; then
