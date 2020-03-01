@@ -19,9 +19,9 @@ ENV LANGUAGE en_US.UTF-8
 RUN wget https://storage.googleapis.com/git-repo-downloads/repo-1 -O /bin/repo
 RUN chmod a+x /bin/repo
 
-RUN useradd -ms /bin/bash yocto_builder
-RUN mkdir -p /yocto_root && chown yocto_builder /yocto_root
-RUN mkdir -p /github/workspace && chown yocto_builder /github/workspace
+RUN useradd -ms /bin/bash yocto_builder -g yocto_builder
+RUN mkdir -p /yocto_root && chown -R yocto_builder:yocto_builder /yocto_root
+RUN mkdir -p /github/workspace && chown -R yocto_builder:yocto_builder /github/workspace
 
 USER yocto_builder
 

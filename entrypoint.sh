@@ -18,6 +18,7 @@ echo "Owner of $GITHUB_WORKSPACE:"
 ls -lad $GITHUB_WORKSPACE
 echo "Current user:"
 whoami
+id
 
 echo "Executing 'repo init -u . -m manifest.xml'"
 repo init -u . -m manifest.xml
