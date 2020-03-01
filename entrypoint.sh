@@ -1,7 +1,14 @@
 #!/bin/bash
 set -e
 
-cd /yocto_root
+# Make this script capable of handling GitHub actions as well as the
+# VOLUME declared in the Dockerfile for local tests independent of the
+# GitHub environment
+if [ "x$GITHUB_WORKSPACE" = "x" ]; then
+  mkdir /yocto_root
+  cd /yocto_root
+fi
+
 repo init -u . -m manifest.xml
 repo sync
 
