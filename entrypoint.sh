@@ -11,15 +11,6 @@ else
   cd $GITHUB_WORKSPACE
 fi
 
-echo "Working directory: `pwd`"
-echo "Showing the content:"
-ls -la
-echo "Owner of $GITHUB_WORKSPACE:"
-ls -lad $GITHUB_WORKSPACE
-echo "Current user:"
-whoami
-id
-
 echo "Executing 'repo init -u . -m manifest.xml'"
 repo init -u . -m manifest.xml
 echo "Executing 'repo sync'"
@@ -31,6 +22,12 @@ fi
 
 echo "Setting up the Poky environment"
 source sources/poky/oe-init-build-env
+
+# Unfortunately GitHub actions insist on running as 'root' user. Due to that we
+# have to force Yocto to accept 'root' for building
+pushd ../sources/poky
+patch -p1 < /disable_root_user_check.patch
+popd
 
 echo "Running command 'bitbake $INPUT_BITBAKE_ARGS'"
 bitbake $INPUT_BITBAKE_ARGS

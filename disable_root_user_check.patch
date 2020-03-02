@@ -1,0 +1,14 @@
+diff --git a/meta/classes/sanity.bbclass b/meta/classes/sanity.bbclass
+index 936fe91..bf71002 100644
+--- a/meta/classes/sanity.bbclass
++++ b/meta/classes/sanity.bbclass
+@@ -739,9 +739,6 @@ def check_sanity_everybuild(status, d):
+     # Sanity tests which test the users environment so need to run at each build (or are so cheap
+     # it makes sense to always run them.
+ 
+-    if 0 == os.getuid():
+-        raise_sanity_error("Do not use Bitbake as root.", d)
+-
+     # Check the Python version, we now have a minimum of Python 3.4
+     import sys
+     if sys.hexversion < 0x03040000:
